@@ -7,10 +7,12 @@ import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
 import { Sht30Card } from "./components/Sht30Card";
 import { Cj702Card } from "./components/Cj702Card";
+import { TemperatureChart } from "./components/TemperatureChart";
+import { AirQualityChart } from "./components/AirQualityChart";
 import { useMqtt } from "./hooks/useMqtt";
 
 function App() {
-  const { connected, sht30, cj702 } = useMqtt();
+  const { connected, sht30, cj702, sht30History, cj702History } = useMqtt();
 
   return (
     <Box sx={{ minHeight: "100vh", bgcolor: "grey.50" }}>
@@ -35,6 +37,12 @@ function App() {
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
             <Cj702Card data={cj702} />
+          </Grid>
+          <Grid size={{ xs: 12, md: 6 }}>
+            <TemperatureChart history={sht30History} />
+          </Grid>
+          <Grid size={{ xs: 12, md: 6 }}>
+            <AirQualityChart history={cj702History} />
           </Grid>
         </Grid>
       </Container>

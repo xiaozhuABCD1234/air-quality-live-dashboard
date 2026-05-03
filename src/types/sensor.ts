@@ -12,3 +12,8 @@ export interface Cj702Data {
   temperature: number;
   humidity: number;
 }
+
+export interface Timestamped<T> {
+  timestamp: number;
+  value: T;
+}

@@ -11,6 +11,18 @@ interface Props {
   data: Sht30Data | null;
 }
 
+function tempColor(t: number): string {
+  if (t < 10) return "info.main";
+  if (t < 25) return "success.main";
+  if (t < 35) return "warning.main";
+  return "error.main";
+}
+
+function humidityColor(h: number): string {
+  if (h < 30 || h > 70) return "warning.main";
+  return "success.main";
+}
+
 export function Sht30Card({ data }: Props) {
   return (
     <Card variant="outlined">
@@ -23,7 +35,7 @@ export function Sht30Card({ data }: Props) {
         <Box sx={{ display: "flex", gap: 4, justifyContent: "center" }}>
           <Box sx={{ textAlign: "center" }}>
             {data ? (
-              <Typography variant="h3" color="primary">
+              <Typography variant="h3" sx={{ color: tempColor(data.temperature) }}>
                 {data.temperature.toFixed(1)}°C
               </Typography>
             ) : (
@@ -35,7 +47,7 @@ export function Sht30Card({ data }: Props) {
           </Box>
           <Box sx={{ textAlign: "center" }}>
             {data ? (
-              <Typography variant="h3" color="info.main">
+              <Typography variant="h3" sx={{ color: humidityColor(data.humidity) }}>
                 {data.humidity.toFixed(1)}%
               </Typography>
             ) : (
