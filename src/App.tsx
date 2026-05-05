@@ -39,7 +39,7 @@ function App() {
             <Cj702Card data={cj702} />
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
-            <TemperatureChart history={sht30History} />
+            <TemperatureChart sht30History={sht30History} cj702History={cj702History} />
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
             <AirQualityChart history={cj702History} />
